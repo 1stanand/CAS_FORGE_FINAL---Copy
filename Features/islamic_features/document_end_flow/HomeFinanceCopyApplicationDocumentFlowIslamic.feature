@@ -1,0 +1,223 @@
+@Epic-Document
+@AuthoredBy-rishabh.garg
+@ImplementedBy-rishabh.garg
+@Islamic
+@Release @E2E
+#FeatureID-ACAUTOCAS-15176
+Feature: Capturing_Copy_Application_Document_Home_Finance_Flow
+
+Scenario: ACAUTOCAS-15717: User should be able to disburse the home finance successfully with document status updated through application service
+    Given user is on CAS Login Page
+    And user logged in CAS with valid username and password present in "LoginDetailsCAS.xlsx" under "LoginData" and 0
+    When user creates an application of "IHF" product type as "indiv" applicant at "sourcing" for "" with "e2esingle" from web service
+    And user opens an application of "IHF" product type as "indiv" applicant at "sourcing" for "" with "e2esingle" from application grid
+    And user selects document tab
+    And user should be able to verify document status in next stage
+      | document_end_flow.xlsx | copy_application_document | 0 |
+      | document_end_flow.xlsx | copy_application_document | 1 |
+      | document_end_flow.xlsx | copy_application_document | 2 |
+      | document_end_flow.xlsx | copy_application_document | 3 |
+
+    # COpy application
+    # open copyied application
+    And user opens an application of "IHF" product type as "indiv" applicant at "sourcing" for "" with "e2esingle" from application grid
+    And user selects document tab
+    And user clicks on move to next stage
+    And user verify application at "Login Acceptance"
+    And user opens an application of "Login Acceptance" stage present in context from application grid
+    And user selects document tab
+    And user should be able to verify document status in next stage
+      | document_end_flow.xlsx | copy_application_document | 0 |
+      | document_end_flow.xlsx | copy_application_document | 1 |
+      | document_end_flow.xlsx | copy_application_document | 2 |
+      | document_end_flow.xlsx | copy_application_document | 3 |
+    And user selects the document with document status
+      | document_end_flow.xlsx | copy_application_document | 4 |
+    And user submit the documents with wait
+    And user reads data from the excel file "document_end_flow.xlsx" under sheet "copy_application_document" and row 4
+    And user selects the document
+    And user selects edit option from top panel of document viewer
+    And user should be able to edit the document
+    And user reads data from the excel file "login_acceptance_end_flow.xlsx" under sheet "login_acceptance_details" and row 0
+    And user opens acceptance sheet
+    And user fills Acceptance sheet details
+    And user clicks on move to next stage
+    And user verify application at "KYC"
+    And user opens an application of "KYC" stage present in context from application grid
+    And user reads data from the excel file "kyc_check.xlsx" under sheet "decision" and row 8
+    And user fills the Kyc check details for primary applicant
+    And user fills decision details for Kyc check
+    And user clicks on move to next stage
+    And user verify application at "DDE"
+    #copy application and open copied application
+    And user reads data from the excel file "copy_application.xlsx" under sheet "mhf" and row 0
+    And user searches an individual application using "Application Number" in copy application screen
+    And user copy the application
+    And generated application number should be available in application grid
+    And user verify application at "DDE"
+    And user opens an application of "DDE" stage present in context from application grid
+    And user navigates to Loan Details Tab
+    #property details
+    And user reads data from the excel file "property_details.xlsx" under sheet "home" and row 131
+    And user fills property details home page with "all" fields for "Property Identified"
+    And user reads data from the excel file "property_details.xlsx" under sheet "other_details" and row 0
+    And user fills other details of identified ready property
+    And user reads data from the excel file "property_details.xlsx" under sheet "property_address" and row 0
+    And user fills the property address with "all" fields
+    And user reads data from the excel file "property_details.xlsx" under sheet "ownership_details" and row 42
+    And user fills the ownership details
+    And user check for dedupe with save next property details
+    And user reads data from the excel file "repayment_parameters.xlsx" under sheet "repayment_parameters" and row 120
+    And user fill repayment parameter
+    And user opens Collateral Page for adding new collateral
+    And user reads data from the excel file "collateral.xlsx" under sheet "default" and row 617
+    And user selects collateral type along with collateral sub type
+    And user fills mandatory fields of home page of collateral details for Plot plus self construction
+    And user reads data from the excel file "collateral.xlsx" under sheet "other_details" and row 3
+    And user fills mandatory fields of other details of Plot plus self construction
+    And user reads data from the excel file "collateral.xlsx" under sheet "property_address" and row 0
+    And user enters mandatory fields of address details of collateral subtype
+    And user reads data from the excel file "collateral.xlsx" under sheet "default" and row 617
+    And user checks the duplicates on collateral dedupe check
+    And user saves the collateral data
+    And user selects document tab
+    # compare both application data
+    And user should be able to verify document status in next stage
+      | document_end_flow.xlsx | copy_application_document | 1 |
+      | document_end_flow.xlsx | copy_application_document | 2 |
+      | document_end_flow.xlsx | copy_application_document | 3 |
+      | document_end_flow.xlsx | copy_application_document | 4 |
+    And user uploads image with particular formats for received documents
+      | document_end_flow.xlsx | copy_application_document | 5 | txt  |
+      | document_end_flow.xlsx | copy_application_document | 5 | zip  |
+      | document_end_flow.xlsx | copy_application_document | 5 | docx |
+      | document_end_flow.xlsx | copy_application_document | 5 | doc  |
+      | document_end_flow.xlsx | copy_application_document | 5 | odt  |
+    And user submit the documents with wait
+    And user reads data from the excel file "document_end_flow.xlsx" under sheet "copy_application_document" and row 4
+    And user selects the document
+    And user click on zoning option on document viewer to resize the image
+    And user zone the image
+    And user should be able to resize document image
+    And user clicks on move to next stage
+    And user verify application at "FII"
+    And user opens an application of "FII" stage present in context from application grid
+    And user reads data from the excel file "fii_details_end_flow.xlsx" under sheet "initiation" and row 1
+    And user fills "Waived of All" fii details
+    And user clicks on move to next stage
+    And user verify application at "COLLATERAL INVESTIGATION INITIATION"
+    And user opens an application of "COLLATERAL INVESTIGATION INITIATION" stage present in context from application grid
+    And user reads data from the excel file "collateral_investigation_initiation.xlsx" under sheet "home" and row 0
+    And user fills "Waived of All" cii details
+    And user clicks on move to next stage
+            ##update checklist done
+#    And user logout from CAS
+#    And user logged in "Common Masters" with username and password present in "LoginDetailsCAS.xlsx" under "LoginData" and 0
+#    And user creates a new document in common masters for "Credit Approval" of "PF"
+#    And user logout from CAS
+#    And user logged in "Common Masters" with username and password present in "LoginDetailsCAS.xlsx" under "ChildBrowserSheet" and 0
+#    And user approves newly created document
+#    And user creates a new document checklist in common masters for "Credit Approval" of "PF"
+#    And user logout from CAS
+#    And user logged in "Common Masters" with username and password present in "LoginDetailsCAS.xlsx" under "LoginData" and 0
+#    And user approves newly created document checklist
+#    And user has modified the document checklist integration set master of "Credit Approval" of "PF"
+#    And user logout from CAS
+#    And user logged in "Common Masters" with username and password present in "LoginDetailsCAS.xlsx" under "ChildBrowserSheet" and 0
+#    And user has approved the changes in document checklist master
+#    And user logout from CAS
+#    And user logged in "CAS" with username and password present in "LoginDetailsCAS.xlsx" under "LoginData" and 0
+#    And user opens an application at "Recommendation" stage from application grid
+#    And user selects document tab
+#    And user updates the document checklist
+#    And user should see the refreshed document checklist with newly added document
+#    And user switch and close next tab
+    And user verify application at "Credit Approval"
+    And user opens an application at "Credit Approval" stage from application grid
+    And user selects document tab
+    And user reads data from the excel file "document_end_flow.xlsx" under sheet "copy_application_document" and row 6
+    And user selects the document
+    And user selects document status as "Received"
+    And user sends scan request to ECM
+    And user saves the scan rescan request
+    And user submit the documents with wait
+    And user switch and close next tab
+    And user re-run the deviation policy
+    And user edit underwriter decision
+    And user reads data from the excel file "conditions.xlsx" under sheet "security_conditions" and row 0
+    And user fills security condition at credit approval stage
+    And user reads data from the excel file "credit_approval_end_flow.xlsx" under sheet "underwriter_decision" and row 0
+    And user fills approval checklist with saving underwriter decision
+    And user reads data from the excel file "shares.xlsx" under sheet "reconsideration" and row 0
+    And user fills kyc details on credit approval
+    And user clicks on move to next stage
+    And user verify application at "Reconsideration"
+    And user opens an application of "Reconsideration" stage present in context from application grid
+    And user clicks on move to next stage
+    And user verify application at "Post Approval"
+    And user opens an application of "Post Approval" stage present in context from application grid
+    And user is on conditions tab
+    And user reads data from the excel file "conditions.xlsx" under sheet "security_conditions" and row 0
+    And user fills all mandatory fields required for security conditions
+    And user clicks on save on security conditions
+    And user selects document tab
+    And user selects the document with document status
+      | document_end_flow.xlsx | copy_application_document | 4 |
+    And user submit the documents with wait
+    And user selects the document
+    And user selects edit option from top panel of document viewer
+    And user should be able to edit the document
+    And user complete document printing tab
+    And user clicks on move to next stage
+    And user verify application at "Disbursal"
+    And user opens an application of "Disbursal" stage present in context from application grid
+    And user is on conditions tab
+    And user reads data from the excel file "conditions.xlsx" under sheet "security_conditions" and row 3
+    And user fills all mandatory fields required for security conditions with upload
+    And user clicks on save on security conditions
+    And user selects document tab
+    And user uploads image with particular formats for received documents
+      | document_end_flow.xlsx | copy_application_document | 5 | txt  |
+      | document_end_flow.xlsx | copy_application_document | 5 | zip  |
+      | document_end_flow.xlsx | copy_application_document | 5 | docx |
+      | document_end_flow.xlsx | copy_application_document | 5 | doc  |
+      | document_end_flow.xlsx | copy_application_document | 5 | odt  |
+    And user submit the documents with wait
+    And user reads data from the excel file "disbursal.xlsx" under sheet "disbursal_entry" and row 0
+    And user moves to main tab of "disbursal"
+    And user clicks on add entry on disbursal page
+    And user fills mandatory field in disbursal entry for "Auto Loan"
+    And user fills disbursal Checklist
+    And user opens payee details on disbursal
+    And user selects payment mode as "Cheque"
+    And user fills dealing bank in payee details
+    And user saves the disbursal
+    And user initiate disbursal
+    And user verify application at "Disbursal Author"
+    And user logout from CAS
+    And user logged in "CAS" with username and password present in "LoginDetailsCAS.xlsx" under "ChildBrowserSheet" and 0
+    And user navigate to disbursal author Screen
+    And user opens an application present in context from disbursal author grid
+    And Author accepts the disbursal application on disbursal author page
+    And user opens an application present in context from sent to ops grid
+    And user selects document tab
+    And user filter the document for "Pre Approval"
+    And user should be able to verify document status in next stage
+      | document_end_flow.xlsx | copy_application_document | 1 |
+      | document_end_flow.xlsx | copy_application_document | 2 |
+      | document_end_flow.xlsx | copy_application_document | 3 |
+      | document_end_flow.xlsx | copy_application_document | 4 |
+    And user filter the document for "Post Approval"
+    And user should be able to verify document status in next stage
+      | document_end_flow.xlsx | copy_application_document | 4 |
+    And user filter the document for "Disbursal"
+    And user should be able to verify document status in next stage
+      | document_end_flow.xlsx | copy_application_document | 5 |
+    And user opens an application present in context from sent to ops grid
+    And user captures the LAN no of the application
+    And user logout from CAS
+    And user logged in "ECM" with username and password present in "LoginDetailsCAS.xlsx" under "LoginData" and 0
+    And user navigates to Task grid of ECM
+    And user search for an application from context in ECM
+    And user opens first task assigned to application in ECM
+    Then ECM task will have the list of documents selected from CAS screen along with the comments

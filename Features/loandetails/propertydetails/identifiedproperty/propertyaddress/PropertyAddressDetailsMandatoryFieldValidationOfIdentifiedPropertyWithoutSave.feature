@@ -1,0 +1,28 @@
+@Epic-Loan_Application_Details
+#@AuthoredBy-vinod.pandey
+@AuthoredBy-vipin.kishor
+@ReviewedBy-None
+@Release1
+@ImplementedBy-aman.nagarkoti
+@ReviewedByDEV
+@Conventional
+@Islamic
+Feature:Property Address Details Mandatory field Validation of Property Details With Application Type As Identified Property Without Save
+
+  #FeatureID-ACAUTOCAS-174
+  Scenario Outline: ACAUTOCAS-4984: Fill property details without <FieldName>
+    Given user is on CAS Login Page
+    And user logged in CAS with valid username and password present in "<SourceDataFile>" under "<SheetName>" and <RowNumber>
+    And user creates new application for "<Loan_Type>"
+    And user reads data from the excel file "<SourcingDetailsWB>" under sheet "<SourcingDetails_home>" and row <SourcingDetails_home_rowNum>
+    And user fills sourcing details
+    And user reads data from the excel file "<PropertyDetailsWB>" under sheet "<PropertyDetails_home>" and row <PropertyDetails_home_rowNum>
+    And user fills property details home page with "<Mandatory_NonMandatory>" fields for "<Application Type>"
+    And user reads data from the excel file "<PropertyDetailsWB>" under sheet "<PropertyDetails_otherDetails>" and row <PropertyDetails_otherDetails_rowNum>
+    And user fills other details of identified ready property
+    And user reads data from the excel file "<PropertyDetailsWB>" under sheet "<PropertyDetails_propertyAddress>" and row <PropertyDetails_propertyAddress_rowNum>
+    When user fills property address details without "<FieldName>" for "<Application Type>"
+    Then proper error message should be displayed at "<FieldName>"
+    Examples:
+      | Application Type    | FieldName | Loan_Type | Mandatory_NonMandatory | SourceDataFile       | SheetName | RowNumber | SourcingDetailsWB     | SourcingDetails_home | SourcingDetails_home_rowNum | PropertyDetailsWB     | PropertyDetails_home | PropertyDetails_home_rowNum | PropertyDetails_otherDetails | PropertyDetails_otherDetails_rowNum | PropertyDetails_propertyAddress | PropertyDetails_propertyAddress_rowNum |
+      | Property Identified | country   | Home Loan | mandatory              | LoginDetailsCAS.xlsx | LoginData | 7         | sourcing_details.xlsx | home                 | 33                          | property_details.xlsx | home                 | 0                           | other_details                | 0                                   | property_address                | 1                                      |

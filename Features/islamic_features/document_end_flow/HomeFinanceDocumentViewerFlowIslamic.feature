@@ -1,0 +1,343 @@
+@Epic-Document
+@AuthoredBy-rishabh.garg
+@ImplementedBy-rishabh.garg
+@Islamic
+@Release @E2E
+#FeatureID-ACAUTOCAS-15176
+Feature: Document_Viewer_Home_Finance_Flow
+
+Scenario: ACAUTOCAS-15719: User should be able to disburse the home finance successfully with document viewer features
+    Given user is on CAS Login Page
+    And user logged in CAS with valid username and password present in "LoginDetailsCAS.xlsx" under "LoginData" and 0
+    When user create new application for "Home Finance"
+    And user reads data from the excel file "personal_information_end_flow.xlsx" under sheet "home" and row 0
+    And user enters personal information details
+    And user clicks on proceed
+    And user verify the personal information details
+    And user fills identification details on personal information
+      | personal_information_end_flow.xlsx | identification_details | 2 |
+    And user enters address details on personal information
+      | personal_information_end_flow.xlsx | address_details | 0 |
+    And user checks for duplicates
+    And user verify the identification details with "save" address details
+    And user gets re-initiate button enabled for different match type
+      | personal_information_end_flow.xlsx | address_details | 0 |
+      | personal_information_end_flow.xlsx | address_details | 1 |
+      | personal_information_end_flow.xlsx | address_details | 2 |
+    And user reads data from the excel file "personal_information_end_flow.xlsx" under sheet "communication_details" and row 0
+    And user enters communication details on personal information
+    And user reads data from the excel file "personal_information_end_flow.xlsx" under sheet "family_details" and row 0
+    And user enters family details on personal information
+    And user reads data from the excel file "personal_information_end_flow.xlsx" under sheet "education_details" and row 0
+    And user enters education details on personal information
+    And user saves the applicant information details
+    And education details should be saved successfully
+    And user clicks on save and next
+    And user navigates to Employment Details tab
+    And user reads data from the excel file "employment_details_end_flow.xlsx" under sheet "salaried" and row 0
+    And user enters employment details for "Salaried" type on personal information
+    And user verify the employment details with "Save" on employment details
+    And user navigates to Financial Details tab
+    And user reads data from the excel file "financial_details_end_flow.xlsx" under sheet "income_details" and row 0
+    And user enters income details on Financial Details Screen
+    And user reads data from the excel file "financial_details.xlsx" under sheet "other_income_details" and row 151
+    And user fill other income details with "single" income head
+    And user reads data from the excel file "financial_details_end_flow.xlsx" under sheet "deductions" and row 0
+    And user enters deduction details on Financial Details Screen
+    And user reads data from the excel file "financial_details_end_flow.xlsx" under sheet "expense_details" and row 0
+    And user enters expense details on Financial Details Screen
+    And user reads data from the excel file "financial_details_end_flow.xlsx" under sheet "asset_details" and row 0
+    And user enters asset details on Financial Details Screen
+    And user reads data from the excel file "financial_details.xlsx" under sheet "liability_details" and row 186
+    And user clicks on liability details
+    And user clicks on Add Liability
+    And user fill all fields of liability details
+    And user save and compute the financial details
+#    And user verify the financial details
+    And click on save and next button on financial details
+    And user clicks on Bank and Credit Details
+    And user reads data from the excel file "bank_credit_card_details.xlsx" under sheet "bank_details" and row 53
+    And user click on plus sign of Bank Details
+    And user fills all the required details of bank details
+#    And user clicks on Add view Bank Details hyperlink
+#    And user select checkbox for Consider for Consolidated ABB option on Add view Bank Details
+#    And user upload the bank details file in Add view Bank details
+#    And user saves Add view Bank details
+    And user reads data from the excel file "bank_credit_card_details.xlsx" under sheet "card_details" and row 0
+    And user adds credit card details with "all" fields
+    And user verify bank credit card details
+    And user clicks on save and next button in Bank details
+    And user opens applicant information page of "lead details"
+    And user reads data from the excel file "sourcing_details.xlsx" under sheet "home" and row 265
+    And user adds "Co" applicant
+    And user reads data from the excel file "personal_information_end_flow.xlsx" under sheet "home" and row 0
+    And user enters personal information details
+    And user clicks on proceed
+    And user verify the personal information details
+    And user fills identification details on personal information
+      | personal_information_end_flow.xlsx | identification_details | 5 |
+    And user enters address details on personal information
+      | personal_information_end_flow.xlsx | address_details | 0 |
+    And user checks for duplicates
+    And user verify the identification details with "save" address details
+    And user gets re-initiate button enabled for different match type
+      | personal_information_end_flow.xlsx | address_details | 0 |
+      | personal_information_end_flow.xlsx | address_details | 1 |
+      | personal_information_end_flow.xlsx | address_details | 2 |
+    And user reads data from the excel file "personal_information_end_flow.xlsx" under sheet "communication_details" and row 0
+    And user enters communication details on personal information
+    And user reads data from the excel file "personal_information_end_flow.xlsx" under sheet "family_details" and row 0
+    And user enters family details on personal information
+    And user reads data from the excel file "personal_information_end_flow.xlsx" under sheet "education_details" and row 0
+    And user enters education details on personal information
+    And user saves the applicant information details
+    And education details should be saved successfully
+    And user clicks on save and next
+
+        #    And user opens applicant information page of "lead details"
+#    And user reads data from the excel file "sourcing_details.xlsx" under sheet "home" and row 265
+#    And user adds "Co" applicant
+#    And user reads data from the excel file "personal_information_end_flow.xlsx" under sheet "home" and row 0
+#    And user enters personal information details
+#    And user clicks on proceed
+#    And user verify the personal information details
+#    And user fills identification details on personal information
+#      | personal_information_end_flow.xlsx | identification_details | 1 |
+#    And user enters address details on personal information
+#      | personal_information_end_flow.xlsx | address_details | 0 |
+#    And user checks for duplicates
+#    And user verify the identification details with "save" address details
+#    And user gets re-initiate button enabled for different match type
+#      | personal_information_end_flow.xlsx | address_details | 0 |
+#      | personal_information_end_flow.xlsx | address_details | 1 |
+#      | personal_information_end_flow.xlsx | address_details | 2 |
+#    And user reads data from the excel file "personal_information_end_flow.xlsx" under sheet "communication_details" and row 0
+#    And user enters communication details on personal information
+#    And user reads data from the excel file "personal_information_end_flow.xlsx" under sheet "family_details" and row 0
+#    And user enters family details on personal information
+#    And user reads data from the excel file "personal_information_end_flow.xlsx" under sheet "education_details" and row 0
+#    And user enters education details on personal information
+#    And user saves the applicant information details
+#    And user verify the communication details
+#    And user verify the family details
+#    And user verify the education details
+#    And user clicks on save and next
+
+
+    And user navigates to Loan Details Tab
+    And user reads data from the excel file "sourcing_details_end_flow.xlsx" under sheet "home" and row 6
+    And user enters all required details on Sourcing Details screen
+        #property details
+    And user reads data from the excel file "property_details.xlsx" under sheet "home" and row 131
+    And user fills property details home page with "all" fields for "Property Identified"
+    And user reads data from the excel file "property_details.xlsx" under sheet "other_details" and row 0
+    And user fills other details of identified ready property
+    And user reads data from the excel file "property_details.xlsx" under sheet "property_address" and row 0
+    And user fills the property address with "all" fields
+    And user reads data from the excel file "property_details.xlsx" under sheet "ownership_details" and row 42
+    And user fills the ownership details
+    And user check for dedupe with save next property details
+#    And user saves property details
+    #property details end
+    And user selects document tab
+    And user selects the document with document status
+      | document_end_flow.xlsx | document_viewer | 0 |
+      | document_end_flow.xlsx | document_viewer | 1 |
+      | document_end_flow.xlsx | document_viewer | 2 |
+      | document_end_flow.xlsx | document_viewer | 3 |
+    And user submit the documents with wait
+    And user clicks on move to next stage
+#    And user navigates to document approval grid
+#    And user searches for application from context in document approval grid
+#    And user should see mandatory deferred waived off documents to approve
+#      | document_end_flow.xlsx | document_viewer | 2 |
+#      | document_end_flow.xlsx | document_viewer | 3 |
+    And user open Document Collection Release Printing Screen
+    And user open same application in Document Collection Release Printing
+    And user should be able to verify document status in next stage
+      | document_end_flow.xlsx | document_viewer | 0 |
+      | document_end_flow.xlsx | document_viewer | 1 |
+      | document_end_flow.xlsx | document_viewer | 2 |
+      | document_end_flow.xlsx | document_viewer | 3 |
+    And user verify application at "Login Acceptance"
+    And user opens an application of "Login Acceptance" stage present in context from application grid
+    And user selects document tab
+    And user should be able to verify document status in next stage
+      | document_end_flow.xlsx | document_viewer | 0 |
+      | document_end_flow.xlsx | document_viewer | 1 |
+      | document_end_flow.xlsx | document_viewer | 2 |
+      | document_end_flow.xlsx | document_viewer | 3 |
+    And user selects the document with document status
+      | document_end_flow.xlsx | document_viewer | 4 |
+    And user submit the documents with wait
+    And user reads data from the excel file "document_end_flow.xlsx" under sheet "document_viewer" and row 4
+    And user selects the document
+    And user selects edit option from top panel of document viewer
+    And user should be able to edit the document
+    And user reads data from the excel file "login_acceptance_end_flow.xlsx" under sheet "login_acceptance_details" and row 0
+    And user opens acceptance sheet
+    And user fills Acceptance sheet details
+    And user clicks on move to next stage
+    And user verify application at "KYC"
+    And user opens an application of "KYC" stage present in context from application grid
+    And user reads data from the excel file "kyc_check.xlsx" under sheet "decision" and row 8
+#    And user fills the Kyc check details for primary applicant
+#    And user fills the Kyc check details for secondary applicant
+    And user fills the Kyc check details for all applicant
+    And user fills decision details for Kyc check
+    And user clicks on move to next stage
+    And user verify application at "DDE"
+    And user opens an application of "DDE" stage present in context from application grid
+    And user reads data from the excel file "repayment_parameters.xlsx" under sheet "repayment_parameters" and row 120
+    And user fills repayment parameter
+    And user opens Collateral Page for adding new collateral
+    And user reads data from the excel file "collateral.xlsx" under sheet "default" and row 616
+    And user fills mandatory fields of home page of collateral details for given collateral sub type
+    And user reads data from the excel file "collateral.xlsx" under sheet "vehicle_details" and row 259
+    And user fills mandatory fields of vehicle details
+    And user reads data from the excel file "collateral.xlsx" under sheet "invoice_details" and row 62
+    And user fill Invoice Details
+    And user closes duplicate check result box after checking the duplicates
+    And user fills Reason Section
+    And user saves the Collateral Details
+    And user selects document tab
+    And user should be able to verify document status in next stage
+      | document_end_flow.xlsx | document_viewer | 4 |
+    And user uploads image with particular formats for received documents
+      | document_end_flow.xlsx | document_viewer | 5 | txt  |
+      | document_end_flow.xlsx | document_viewer | 5 | zip  |
+      | document_end_flow.xlsx | document_viewer | 5 | docx |
+      | document_end_flow.xlsx | document_viewer | 5 | doc  |
+      | document_end_flow.xlsx | document_viewer | 5 | odt  |
+    And user submit the documents with wait
+    And user reads data from the excel file "document_end_flow.xlsx" under sheet "document_viewer" and row 4
+    And user selects the document
+    And user click on zoning option on document viewer to resize the image
+    And user zone the image
+    And user should be able to resize document image
+    And user clicks on move to next stage
+    And user verify application at "FII"
+    And user opens an application of "FII" stage present in context from application grid
+    And user reads data from the excel file "fii_details_end_flow.xlsx" under sheet "initiation" and row 1
+    And user fills "Waived of All" fii details
+    And user clicks on move to next stage
+    And user reads data from the excel file "rcu_initiation.xlsx" under sheet "home" and row 1
+    And user verify application at "RCU_INITIATION"
+    And user navigates to rcu initiation screen
+    And user searches application on "RCU INITIATION" screen along with status
+    And user selects the application in rcu initiation
+    And user waive off the application
+    And user verify application at "COLLATERAL INVESTIGATION INITIATION"
+    And user opens an application of "COLLATERAL INVESTIGATION INITIATION" stage present in context from application grid
+    And user reads data from the excel file "collateral_investigation_initiation.xlsx" under sheet "home" and row 0
+    And user fills "Waived of All" cii details
+    And user clicks on move to next stage
+    And user verify application at "Credit Approval"
+    And user opens an application at "Credit Approval" stage from application grid
+    And user selects document tab
+    And user reads data from the excel file "document_end_flow.xlsx" under sheet "document_viewer" and row 6
+    And user selects the document
+    And user selects document status as "Received"
+    And user sends scan request to ECM
+    And user saves the scan rescan request
+    And user submit the documents with wait
+    And user switch and close next tab
+    And user re-run the deviation policy
+        And user edit underwriter decision
+    And user reads data from the excel file "conditions.xlsx" under sheet "security_conditions" and row 0
+    And user fills security condition at credit approval stage
+    And user reads data from the excel file "credit_approval_end_flow.xlsx" under sheet "underwriter_decision" and row 0
+    And user fills approval checklist with saving underwriter decision
+    And user clicks on move to next stage
+    And user verify application at "Reconsideration"
+    And user opens an application of "Reconsideration" stage present in context from application grid
+        ##update checklist done
+#    And user logout from CAS
+#    And user logged in "Common Masters" with username and password present in "LoginDetailsCAS.xlsx" under "LoginData" and 0
+#    And user creates a new document in common masters for "Credit Approval" of "PF"
+#    And user logout from CAS
+#    And user logged in "Common Masters" with username and password present in "LoginDetailsCAS.xlsx" under "ChildBrowserSheet" and 0
+#    And user approves newly created document
+#    And user creates a new document checklist in common masters for "Credit Approval" of "PF"
+#    And user logout from CAS
+#    And user logged in "Common Masters" with username and password present in "LoginDetailsCAS.xlsx" under "LoginData" and 0
+#    And user approves newly created document checklist
+#    And user has modified the document checklist integration set master of "Credit Approval" of "PF"
+#    And user logout from CAS
+#    And user logged in "Common Masters" with username and password present in "LoginDetailsCAS.xlsx" under "ChildBrowserSheet" and 0
+#    And user has approved the changes in document checklist master
+#    And user logout from CAS
+#    And user logged in "CAS" with username and password present in "LoginDetailsCAS.xlsx" under "LoginData" and 0
+#    And user opens an application at "Credit Approval" stage from application grid
+#    And user selects document tab
+#    And user updates the document checklist
+#    And user should see the refreshed document checklist with newly added document
+#    And user switch and close next tab
+    And user clicks on move to next stage
+    And user verify application at "Post Approval"
+    And user opens an application of "Post Approval" stage present in context from application grid
+    And user is on conditions tab
+    And user reads data from the excel file "conditions.xlsx" under sheet "security_conditions" and row 0
+    And user fills all mandatory fields required for security conditions
+    And user clicks on save on security conditions
+    And user selects document tab
+    And user selects the document with document status
+      | document_end_flow.xlsx | document_viewer | 4 |
+    And user submit the documents with wait
+    And user selects the document
+    And user selects edit option from top panel of document viewer
+    And user should be able to edit the document
+    And user complete document printing tab
+    And user clicks on move to next stage
+    And user verify application at "Disbursal"
+    And user opens an application of "Disbursal" stage present in context from application grid
+    And user is on conditions tab
+    And user reads data from the excel file "conditions.xlsx" under sheet "security_conditions" and row 3
+    And user fills all mandatory fields required for security conditions with upload
+    And user clicks on save on security conditions
+    And user selects document tab
+    And user uploads image with particular formats for received documents
+      | document_end_flow.xlsx | document_viewer | 5 | txt  |
+      | document_end_flow.xlsx | document_viewer | 5 | zip  |
+      | document_end_flow.xlsx | document_viewer | 5 | docx |
+      | document_end_flow.xlsx | document_viewer | 5 | doc  |
+      | document_end_flow.xlsx | document_viewer | 5 | odt  |
+    And user submit the documents with wait
+    And user reads data from the excel file "disbursal.xlsx" under sheet "disbursal_entry" and row 0
+    And user moves to main tab of "disbursal"
+    And user clicks on add entry on disbursal page
+    And user fills mandatory field in disbursal entry for "Home Loan"
+    And user fills disbursal Checklist
+    And user opens payee details on disbursal
+    And user selects payment mode as "Cheque"
+    And user fills dealing bank in payee details
+    And user saves the disbursal
+    And user initiate disbursal
+    And user verify application at "Disbursal Author"
+    And user logout from CAS
+    And user logged in "CAS" with username and password present in "LoginDetailsCAS.xlsx" under "ChildBrowserSheet" and 0
+    And user navigate to disbursal author Screen
+    And user opens an application present in context from disbursal author grid
+    And Author accepts the disbursal application on disbursal author page
+    And user opens an application present in context from sent to ops grid
+    And user selects document tab
+    And user filter the document for "Pre Approval"
+    And user should be able to verify document status in next stage
+      | document_end_flow.xlsx | document_viewer | 1 |
+      | document_end_flow.xlsx | document_viewer | 2 |
+      | document_end_flow.xlsx | document_viewer | 3 |
+      | document_end_flow.xlsx | document_viewer | 4 |
+    And user filter the document for "Post Approval"
+    And user should be able to verify document status in next stage
+      | document_end_flow.xlsx | document_viewer | 4 |
+    And user filter the document for "Disbursal"
+    And user should be able to verify document status in next stage
+      | document_end_flow.xlsx | document_viewer | 5 |
+    And user opens an application present in context from sent to ops grid
+    And user captures the LAN no of the application
+    And user logout from CAS
+    And user logged in "ECM" with username and password present in "LoginDetailsCAS.xlsx" under "LoginData" and 0
+    And user navigates to Task grid of ECM
+    And user search for an application from context in ECM
+    And user opens first task assigned to application in ECM
+    Then ECM task will have the list of documents selected from CAS screen along with the comments
